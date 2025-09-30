@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SalesFlow - AI Smart Solutions</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;500;700&display=swap" rel="stylesheet">
 <style>
 /* Grundinställningar */
 body {
     margin: 0;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Raleway', sans-serif;
     background: #0a0a0a;
     color: #f5f5f5;
     overflow-x: hidden;
@@ -28,19 +28,20 @@ header {
 
 /* Logga */
 .logo {
-    font-weight: 700;
+    font-weight: 500;
     font-size: 2.5rem;
     text-align: center;
+    letter-spacing: 1px;
 }
-.logo .smart {
-    background: linear-gradient(45deg, #FFD700, #FFEB99);
+.logo .sales {
+    background: linear-gradient(45deg, #FFD700, #FFE79A);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 2px #FFD700, 0 0 5px #FFEB99;
+    text-shadow: 0 0 1px #FFD700;
 }
 .logo .flow {
     color: #ffffff;
-    text-shadow: 0 0 2px #ffffff, 0 0 4px #e6f7ff;
+    text-shadow: 0 0 1px #e6f7ff;
 }
 
 /* Hamburger */
@@ -54,7 +55,7 @@ header {
     flex-direction: column;
     justify-content: space-between;
     cursor: pointer;
-    z-index: 500; /* högre än panelen */
+    z-index: 500; /* alltid ovanpå panelen */
 }
 .menu-btn span {
     display: block;
@@ -63,12 +64,12 @@ header {
     border-radius: 2px;
     transition: 0.5s;
     position: relative;
-    z-index: 500; /* alltid ovanpå */
-    box-shadow: 0 0 4px #ffffff;
+    z-index: 500;
+    box-shadow: 0 0 2px #ffffff; /* mild glow för synlighet */
 }
-.menu-btn.active span:nth-child(1) { transform: rotate(45deg) scaleX(1.2); }
+.menu-btn.active span:nth-child(1) { transform: rotate(45deg) scaleX(1.1); }
 .menu-btn.active span:nth-child(2) { opacity: 0; }
-.menu-btn.active span:nth-child(3) { transform: rotate(-45deg) scaleX(1.2); }
+.menu-btn.active span:nth-child(3) { transform: rotate(-45deg) scaleX(1.1); }
 
 /* Menypanel */
 .menu-panel {
@@ -153,7 +154,7 @@ header {
 <body>
 
 <header>
-  <div class="logo"><span class="smart">Sales</span><span class="flow">Flow</span></div>
+  <div class="logo"><span class="sales">Sales</span><span class="flow">Flow</span></div>
   <div class="menu-btn" id="menuBtn">
     <span></span>
     <span></span>
