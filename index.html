@@ -10,12 +10,11 @@
 body {
     margin: 0;
     font-family: 'Raleway', sans-serif;
-    color: #f5f5f5;
+    color: #ffffff;
     overflow-x: hidden;
-    /* abstract gradient bakgrund */
-    background: linear-gradient(270deg, #0a0a0a, #1a1a2e, #162447, #0a0a0a);
+    background: linear-gradient(270deg, #1a1f3b, #2e3050, #3b2e5a, #1a1f3b);
     background-size: 800% 800%;
-    animation: gradientMove 20s ease infinite;
+    animation: gradientMove 25s ease infinite;
 }
 
 @keyframes gradientMove {
@@ -31,7 +30,7 @@ header {
     align-items: center;
     position: relative;
     height: 80px;
-    background: rgba(10,10,10,0.95);
+    background: rgba(26,31,59,0.95);
     z-index: 100;
 }
 
@@ -53,32 +52,37 @@ header {
     text-shadow: 0 0 1px #e6f7ff;
 }
 
-/* Hamburger */
+/* Futuristic Hamburger */
 .menu-btn {
     position: absolute;
     right: 20px;
     top: 25px;
-    width: 35px;
-    height: 30px;
+    width: 45px;
+    height: 45px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
-    z-index: 600; /* högre än menypanel */
+    z-index: 600;
+    transition: background 0.3s ease;
 }
+.menu-btn:hover { background: rgba(255,255,255,0.2); }
+
 .menu-btn span {
     display: block;
-    height: 4px;
-    background: #f5f5f5;
+    width: 25px;
+    height: 3px;
+    background: #ffffff;
     border-radius: 2px;
-    transition: 0.5s;
+    transition: all 0.4s ease;
     position: relative;
-    z-index: 600; /* alltid ovanpå */
-    box-shadow: 0 0 2px #ffffff;
 }
-.menu-btn.active span:nth-child(1) { transform: rotate(45deg) scaleX(1.1); }
+.menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
 .menu-btn.active span:nth-child(2) { opacity: 0; }
-.menu-btn.active span:nth-child(3) { transform: rotate(-45deg) scaleX(1.1); }
+.menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
 /* Menypanel */
 .menu-panel {
@@ -86,19 +90,20 @@ header {
     top: 0; right: 0;
     width: 0;
     height: 100%;
-    background: linear-gradient(120deg, #0a0a0a, #1a1a2e, #11111f);
+    background: rgba(26,31,59,0.95);
+    backdrop-filter: blur(10px);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     transition: width 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    z-index: 500; /* lägre än hamburger */
-    box-shadow: -5px 0 15px rgba(255,255,255,0.1);
+    z-index: 500;
+    box-shadow: -5px 0 20px rgba(255,255,255,0.1);
 }
 .menu-panel.active { width: 300px; }
 .menu-panel a {
-    color: #f5f5f5;
+    color: #ffffff;
     text-decoration: none;
     font-size: 1.5rem;
     margin: 20px 0;
@@ -122,7 +127,7 @@ header {
 .hero h2 {
     font-size: 3rem;
     margin-bottom: 20px;
-    color: #f5f5f5;
+    color: #ffffff;
 }
 .hero p {
     font-size: 1.3rem;
@@ -188,13 +193,10 @@ header {
 const menuBtn = document.getElementById('menuBtn');
 const menuPanel = document.getElementById('menuPanel');
 
-function toggleMenu() {
+menuBtn.addEventListener('click', () => {
     menuBtn.classList.toggle('active');
     menuPanel.classList.toggle('active');
-}
-
-// Klick på hamburger
-menuBtn.addEventListener('click', toggleMenu);
+});
 </script>
 
 </body>
