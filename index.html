@@ -238,12 +238,49 @@
       <a href="#">Kontakt</a>
     </div>
 
-    <!-- Content -->
-    <div class="content">
-      <h1>AI-drivna smarta lösningar</h1>
-      <p>Vi hjälper företag att växa med intelligenta, skräddarsydda AI-lösningar som skapar verkligt värde.</p>
-      <button>Boka en demo</button>
-    </div>
+   <!-- Content -->
+<div class="content">
+  <h1 class="fade-in-title">Skräddarsydda lösningar för småföretag</h1>
+  <p class="fade-in-text">Vi hjälper dig att växa med smarta, flexibla digitala lösningar som sparar tid och skapar verkligt värde.</p>
+  <button class="fade-in-btn">Kom igång idag</button>
+</div>
+
+<style>
+  /* Animationer */
+  .fade-in-title {
+    opacity: 0;
+    transform: scale(0.8);
+    animation: popIn 1s ease forwards;
+    animation-delay: 0.3s;
+  }
+  .fade-in-text {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 1s ease forwards;
+    animation-delay: 0.8s;
+  }
+  .fade-in-btn {
+    opacity: 0;
+    transform: scale(0.9);
+    animation: popIn 1s ease forwards;
+    animation-delay: 1.3s;
+  }
+
+  @keyframes popIn {
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes fadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
   </section>
 
   <script>
