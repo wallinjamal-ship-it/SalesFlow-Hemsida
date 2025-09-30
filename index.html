@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SmartFlow - AI Smart Solutions</title>
+<title>SalesFlow - AI Smart Solutions</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
 <style>
 /* Grundinställningar */
@@ -32,7 +32,7 @@ header {
     font-size: 2.5rem;
     text-align: center;
 }
-.logo .sales {
+.logo .smart {
     background: linear-gradient(45deg, #FFD700, #FFEB99);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -44,23 +44,27 @@ header {
 }
 
 /* Hamburger */
+.menu-btn {
+    position: absolute;
+    right: 20px;
+    top: 25px;
+    width: 35px;
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 500; /* högre än panelen */
+}
 .menu-btn span {
     display: block;
     height: 4px;
     background: #f5f5f5;
     border-radius: 2px;
     transition: 0.5s;
-    position: relative; /* lägg till */
-    z-index: 400;       /* högre än panelen */
-}
-    
-}
-.menu-btn span {
-    display: block;
-    height: 4px;
-    background: #f5f5f5;
-    border-radius: 2px;
-    transition: 0.5s;
+    position: relative;
+    z-index: 500; /* alltid ovanpå */
+    box-shadow: 0 0 4px #ffffff;
 }
 .menu-btn.active span:nth-child(1) { transform: rotate(45deg) scaleX(1.2); }
 .menu-btn.active span:nth-child(2) { opacity: 0; }
@@ -79,7 +83,8 @@ header {
     justify-content: center;
     overflow: hidden;
     transition: width 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    z-index: 200;
+    z-index: 400;
+    box-shadow: -5px 0 15px rgba(255,255,255,0.1);
 }
 .menu-panel.active { width: 300px; }
 .menu-panel a {
@@ -148,7 +153,7 @@ header {
 <body>
 
 <header>
- <div class="logo"><span class="smart">Sales</span><span class="flow">Flow</span></div>
+  <div class="logo"><span class="smart">Sales</span><span class="flow">Flow</span></div>
   <div class="menu-btn" id="menuBtn">
     <span></span>
     <span></span>
@@ -166,7 +171,7 @@ header {
 
 <section class="hero">
   <h2>AI som förändrar din verksamhet</h2>
-  <p>SmartFlow erbjuder smarta AI-lösningar som automatiserar, analyserar och maximerar din potential.</p>
+  <p>SalesFlow erbjuder smarta AI-lösningar som automatiserar, analyserar och maximerar din potential.</p>
   <button class="cta-btn">Kom igång</button>
 </section>
 
