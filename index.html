@@ -46,6 +46,10 @@
       flex-wrap: wrap;
     }
 
+    nav ul li {
+      position: relative;
+    }
+
     nav ul li a {
       text-decoration: none;
       color: #fff;
@@ -71,62 +75,55 @@
       border-radius: 2px;
     }
 
-    /* ===== Bubble-menu för tjänster ===== */
-    .bubbles {
-      position: relative;
-    }
-
-    .bubble-menu {
-      display: flex;
-      gap: 15px;
+    /* ===== Expanderande tjänster-kort ===== */
+    .service-hover-menu {
       position: absolute;
       top: 120%;
       left: 50%;
       transform: translateX(-50%);
+      display: flex;
+      gap: 20px;
       opacity: 0;
       pointer-events: none;
-      transition: all 0.4s ease;
+      transition: all 0.5s ease;
     }
 
-    .bubbles:hover .bubble-menu {
+    nav ul li:hover .service-hover-menu {
       opacity: 1;
       pointer-events: auto;
     }
 
-    .bubble {
-      background: rgba(255,255,255,0.15); /* genomskinlig vit */
-      color: #0a1a2f;
-      padding: 20px;
-      border-radius: 50%;
+    .hover-card {
+      background: rgba(255,255,255,0.15);
+      width: 160px;
+      padding: 15px;
+      border-radius: 12px;
       text-align: center;
-      width: 120px;
-      height: 120px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      transition: transform 0.3s, opacity 0.3s;
+      color: #0a1a2f;
+      transform: translateY(-20px);
+      transition: all 0.4s ease;
       cursor: pointer;
     }
 
-    .bubble:hover {
-      transform: scale(1.1);
+    .hover-card:hover {
+      transform: translateY(-30px);
+      box-shadow: 0 8px 20px rgba(0,191,166,0.4);
     }
 
-    .bubble i {
-      font-size: 1.5rem;
+    .hover-card i {
+      font-size: 2rem;
       margin-bottom: 10px;
       color: #00bfa6;
     }
 
-    .bubble h4 {
+    .hover-card h4 {
       margin: 0;
       font-size: 1rem;
     }
 
-    .bubble p {
+    .hover-card p {
       font-size: 0.7rem;
-      margin: 0;
+      margin: 5px 0 0 0;
     }
 
     /* ===== Hero Section ===== */
@@ -161,11 +158,11 @@
       background: #009e8c;
     }
 
-    /* ===== Services Section (uppdaterad) ===== */
+    /* ===== Våra tjänster Section ===== */
     .services {
       padding: 80px 20px;
       text-align: center;
-      background: rgba(255,255,255,0.15); /* mer genomskinlig vit bakgrund */
+      background: rgba(255,255,255,0.15); /* genomskinlig vit */
       color: #0a1a2f;
     }
 
@@ -215,10 +212,6 @@
       margin-bottom: 0;
     }
 
-    .service-card p {
-      display: none;
-    }
-
     /* ===== Result Section ===== */
     .results {
       padding: 80px 20px;
@@ -242,10 +235,10 @@
       color: #00bfa6;
     }
 
-    /* ===== Footer Section (genomskinlig vit) ===== */
+    /* ===== Footer Section ===== */
     footer {
       padding: 50px 20px;
-      background: rgba(255,255,255,0.15); /* genomskinlig vit */
+      background: rgba(255,255,255,0.15); /* semi-vit */
       text-align: center;
       color: #0a1a2f;
     }
@@ -312,7 +305,7 @@
         width: 90%;
       }
 
-      .bubble-menu {
+      .service-hover-menu {
         flex-direction: column;
         top: 100%;
         left: 0;
@@ -340,20 +333,20 @@
     <div class="logo">SalesFlow</div>
     <nav>
       <ul>
-        <li class="bubbles">
+        <li>
           <a href="#">Tjänster</a>
-          <div class="bubble-menu">
-            <div class="bubble">
+          <div class="service-hover-menu">
+            <div class="hover-card">
               <i class="fas fa-globe"></i>
               <h4>Digital närvaro</h4>
               <p>Uppdateringar på hemsidan och SEO.</p>
             </div>
-            <div class="bubble">
+            <div class="hover-card">
               <i class="fas fa-share-alt"></i>
               <h4>Sociala medier</h4>
               <p>Planering och hantering av konton.</p>
             </div>
-            <div class="bubble">
+            <div class="hover-card">
               <i class="fas fa-envelope-open-text"></i>
               <h4>Kommunikation</h4>
               <p>Mail, nyhetsbrev och support.</p>
