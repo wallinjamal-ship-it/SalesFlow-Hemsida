@@ -5,67 +5,105 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SalesFlow</title>
   <style>
-    /* RESET */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    @import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
 
     body {
-      font-family: "Poppins", sans-serif;
+      height: 100vh;
       color: #fff;
-      height: 100vh;
       overflow-x: hidden;
+    }
+
+    /* Wave Background */
+    section {
       position: relative;
-    }
-
-    /* Rainbow background */
-    .rainbow {
+      width: 100%;
       height: 100vh;
-      width: 0;
-      top: 0;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    section .wave {
       position: absolute;
-      transform: rotate(10deg);
-      transform-origin: top right;
-      animation: slide 45s linear infinite;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #4973ff;
+      box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+      transition: 0.5s;
     }
-
-    @keyframes slide {
-      from { right: -25vw; }
-      to { right: 125vw; }
+    section .wave span {
+      content: "";
+      position: absolute;
+      width: 325vh;
+      height: 325vh;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -75%);
+      background: #000;
     }
-
-    /* Create multiple rainbow stripes */
-    .rainbow:nth-child(1) { box-shadow: -130px 0 80px 40px white, -50px 0 50px 25px #e879f9, 0 0 50px 25px #60a5fa, 50px 0 50px 25px #5eead4, 130px 0 80px 40px white; animation-delay: -2s; }
-    .rainbow:nth-child(2) { box-shadow: -130px 0 80px 40px white, -50px 0 50px 25px #60a5fa, 0 0 50px 25px #e879f9, 50px 0 50px 25px #5eead4, 130px 0 80px 40px white; animation-delay: -4s; }
-    .rainbow:nth-child(3) { box-shadow: -130px 0 80px 40px white, -50px 0 50px 25px #5eead4, 0 0 50px 25px #e879f9, 50px 0 50px 25px #60a5fa, 130px 0 80px 40px white; animation-delay: -6s; }
+    section .wave span:nth-child(1) {
+      border-radius: 45%;
+      background: rgba(20, 20, 20, 1);
+      animation: animate 5s linear infinite;
+    }
+    section .wave span:nth-child(2) {
+      border-radius: 40%;
+      background: rgba(20, 20, 20, 0.5);
+      animation: animate 10s linear infinite;
+    }
+    section .wave span:nth-child(3) {
+      border-radius: 42.5%;
+      background: rgba(20, 20, 20, 0.5);
+      animation: animate 15s linear infinite;
+    }
+    @keyframes animate {
+      0% {
+        transform: translate(-50%, -75%) rotate(0deg);
+      }
+      100% {
+        transform: translate(-50%, -75%) rotate(360deg);
+      }
+    }
 
     /* Logo */
-    header {
-      text-align: center;
-      padding: 20px;
-      position: relative;
-      z-index: 100;
-    }
     .logo {
-      font-size: 2.5rem;
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2.2rem;
       font-weight: 600;
+      letter-spacing: 2px;
+      z-index: 1000;
     }
     .logo span:first-child {
       color: gold;
-      text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+      text-shadow: 0 0 8px rgba(255,215,0,0.6);
     }
     .logo span:last-child {
-      color: #f5f5f5;
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+      color: #f0f0f0;
+      text-shadow: 0 0 6px rgba(255,255,255,0.5);
+      font-weight: 300;
     }
 
     /* Hamburger */
     #nav-icon1 {
-      width: 35px;
+      width: 40px;
       height: 30px;
       position: absolute;
       right: 20px;
       top: 25px;
       cursor: pointer;
-      z-index: 300;
+      z-index: 1001;
     }
     #nav-icon1 span {
       display: block;
@@ -74,22 +112,24 @@
       width: 100%;
       background: #fff;
       border-radius: 2px;
-      transition: 0.25s ease-in-out;
+      opacity: 1;
+      left: 0;
+      transition: .25s ease-in-out;
     }
-    #nav-icon1 span:nth-child(1) { top: 0; }
+    #nav-icon1 span:nth-child(1) { top: 0px; }
     #nav-icon1 span:nth-child(2) { top: 13px; }
     #nav-icon1 span:nth-child(3) { top: 26px; }
-
     #nav-icon1.open span:nth-child(1) {
       top: 13px;
-      transform: rotate(45deg);
+      transform: rotate(135deg);
     }
     #nav-icon1.open span:nth-child(2) {
       opacity: 0;
+      left: -40px;
     }
     #nav-icon1.open span:nth-child(3) {
       top: 13px;
-      transform: rotate(-45deg);
+      transform: rotate(-135deg);
     }
 
     /* Menypanel */
@@ -98,68 +138,121 @@
       top: 0; right: 0;
       width: 0;
       height: 100%;
-      background: rgba(10, 10, 20, 0.9);
+      background: rgba(30,30,50,0.95);
+      backdrop-filter: blur(12px);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       overflow: hidden;
       transition: width 0.5s ease;
-      z-index: 200;
+      z-index: 999;
     }
-    .menu-panel.active { width: 250px; }
+    .menu-panel.active {
+      width: 280px;
+    }
     .menu-panel a {
-      color: #fff;
+      color: #f5f5f5;
       text-decoration: none;
-      font-size: 1.5rem;
-      margin: 15px 0;
+      font-size: 1.6rem;
+      margin: 20px 0;
       opacity: 0;
-      transform: translateX(30px);
-      transition: all 0.3s ease;
+      transform: translateX(50px);
+      transition: all 0.5s ease;
     }
     .menu-panel.active a {
       opacity: 1;
       transform: translateX(0);
     }
-    .menu-panel a:hover { color: gold; }
+    .menu-panel a:hover {
+      color: gold;
+    }
 
-    /* Responsiv */
+    /* Content */
+    .content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      max-width: 600px;
+      padding: 20px;
+    }
+    .content h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: #fff;
+      text-shadow: 0 0 10px rgba(255,255,255,0.2);
+    }
+    .content p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: #e0e0e0;
+    }
+    .content button {
+      padding: 12px 25px;
+      font-size: 1rem;
+      background: gold;
+      border: none;
+      border-radius: 25px;
+      color: #000;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .content button:hover {
+      background: #e6c200;
+      transform: scale(1.05);
+    }
+
     @media(max-width: 768px) {
-      .logo { font-size: 2rem; }
-      .menu-panel.active { width: 100%; }
+      .content h1 { font-size: 2.2rem; }
+      .content p { font-size: 1rem; }
     }
   </style>
 </head>
 <body>
-  <!-- Rainbow background stripes -->
-  <div class="rainbow"></div>
-  <div class="rainbow"></div>
-  <div class="rainbow"></div>
+  <section>
+    <!-- Wave background -->
+    <div class="wave">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
 
-  <header>
-    <div class="logo"><span>Sales</span><span>Flow</span></div>
+    <!-- Logo -->
+    <div class="logo">
+      <span>Sales</span><span>Flow</span>
+    </div>
+
+    <!-- Hamburger -->
     <div id="nav-icon1">
       <span></span>
       <span></span>
       <span></span>
     </div>
-  </header>
 
-  <!-- Menypanel -->
-  <div class="menu-panel">
-    <a href="#">Tjänster</a>
-    <a href="#">Om oss</a>
-    <a href="#">Kunder</a>
-    <a href="#">Kontakt</a>
-  </div>
+    <!-- Menypanel -->
+    <div class="menu-panel" id="menuPanel">
+      <a href="#">Tjänster</a>
+      <a href="#">Om oss</a>
+      <a href="#">Kunder</a>
+      <a href="#">Kontakt</a>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+      <h1>AI-drivna smarta lösningar</h1>
+      <p>Vi hjälper företag att växa med intelligenta, skräddarsydda AI-lösningar som skapar verkligt värde.</p>
+      <button>Boka en demo</button>
+    </div>
+  </section>
 
   <script>
-    const menuBtn = document.getElementById("nav-icon1");
-    const menuPanel = document.querySelector(".menu-panel");
+    const navIcon = document.getElementById('nav-icon1');
+    const menuPanel = document.getElementById('menuPanel');
 
-    menuBtn.addEventListener("click", () => {
-      menuBtn.classList.toggle("open");
-      menuPanel.classList.toggle("active");
+    navIcon.addEventListener('click', () => {
+      navIcon.classList.toggle('open');
+      menuPanel.classList.toggle('active');
     });
   </script>
 </body>
