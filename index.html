@@ -44,17 +44,16 @@ header {
 }
 
 /* Hamburger */
-.menu-btn {
-    position: absolute;
-    right: 20px;
-    top: 25px;
-    width: 35px;
-    height: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    cursor: pointer;
-    z-index: 300;
+.menu-btn span {
+    display: block;
+    height: 4px;
+    background: #f5f5f5;
+    border-radius: 2px;
+    transition: 0.5s;
+    position: relative; /* lägg till */
+    z-index: 400;       /* högre än panelen */
+}
+    
 }
 .menu-btn span {
     display: block;
@@ -149,7 +148,7 @@ header {
 <body>
 
 <header>
-  <div class="logo"><span class="smart">Smart</span><span class="flow">Flow</span></div>
+ <div class="logo"><span class="smart">Sales</span><span class="flow">Flow</span></div>
   <div class="menu-btn" id="menuBtn">
     <span></span>
     <span></span>
