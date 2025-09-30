@@ -262,7 +262,7 @@ footer h2 {
   }
 }
 
-/* ===== Canvas för futuristiska partiklar ===== */
+/* ===== Canvas för futuristiska partiklar med linjer ===== */
 #bgCanvas {
   position: fixed;
   top:0; left:0;
@@ -348,7 +348,7 @@ footer h2 {
     </div>
   </footer>
 
-  <!-- Canvas för partiklar -->
+  <!-- Canvas -->
   <canvas id="bgCanvas"></canvas>
 
   <!-- JS för hamburger -->
@@ -362,7 +362,7 @@ footer h2 {
     });
   </script>
 
-  <!-- JS för futuristiska partiklar -->
+  <!-- JS för partiklar med linjer -->
   <script>
     const canvas = document.getElementById('bgCanvas');
     const ctx = canvas.getContext('2d');
@@ -376,22 +376,41 @@ footer h2 {
     });
 
     const particles = [];
-    const numParticles = 60;
+    const numParticles = 80;
+    const maxDistance = 120;
 
     for (let i = 0; i < numParticles; i++) {
       particles.push({
         x: Math.random() * w,
         y: Math.random() * h,
-        r: Math.random() * 3 + 1,
-        dx: (Math.random() - 0.5) * 0.5,
-        dy: (Math.random() - 0.5) * 0.5,
-        color: `hsl(${Math.random()*360}, 70%, 60%)`
+        r: Math.random() * 2 + 0.5,
+        dx: (Math.random() - 0.5) * 0.3,
+        dy: (Math.random() - 0.5) * 0.3,
+        color: `rgba(0,191,166,0.6)`
       });
     }
 
     function animate() {
       ctx.clearRect(0, 0, w, h);
-      
+
+      // Rita linjer
+      for (let i = 0; i < numParticles; i++) {
+        for (let j = i + 1; j < numParticles; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx*dx + dy*dy);
+          if (distance < maxDistance) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(0,191,166,${1 - distance / maxDistance})`;
+            ctx.lineWidth = 1;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Rita partiklar
       particles.forEach(p => {
         p.x += p.dx;
         p.y += p.dy;
@@ -406,16 +425,11 @@ footer h2 {
         ctx.fillStyle = p.color;
         ctx.fill();
       });
-      
+
       requestAnimationFrame(animate);
     }
 
     animate();
-  </script>
-</body>
-</html>
-
-
   </script>
 </body>
 </html>
