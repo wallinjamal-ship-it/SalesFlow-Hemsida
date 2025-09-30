@@ -20,24 +20,30 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 30px; /* ändrad padding så menyn syns */
-      background: rgba(10, 26, 47, 0.9);
+      padding: 20px 50px;
+      background: rgba(10, 26, 47, 0.95);
       position: fixed;
       top: 0;
       width: 100%;
       z-index: 1000;
+      flex-wrap: wrap;
+      box-sizing: border-box;
     }
 
     header .logo {
       font-size: 1.5rem;
       font-weight: 600;
-      color: #fff; /* logga vit */
+      color: #fff;
+      flex-shrink: 0;
     }
 
     nav ul {
       list-style: none;
       display: flex;
       gap: 30px;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
     }
 
     nav ul li a {
@@ -73,7 +79,7 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 0 20px;
+      padding: 120px 20px 20px 20px;
     }
 
     .hero h1 {
@@ -205,6 +211,12 @@
     }
 
     /* ===== Responsive ===== */
+    @media (max-width: 1024px) {
+      nav ul {
+        justify-content: center;
+      }
+    }
+
     @media (max-width: 768px) {
       nav ul {
         position: absolute;
@@ -233,6 +245,10 @@
 
       .hero h1 {
         font-size: 2rem;
+      }
+
+      .service-card {
+        width: 90%;
       }
     }
 
@@ -278,8 +294,6 @@
   <section class="services">
     <h2>Våra tjänster</h2>
     <div class="service-cards">
-      
-      <!-- Digital närvaro -->
       <div class="service-card">
         <div class="icon">
           <i class="fas fa-globe"></i>
@@ -287,8 +301,6 @@
         <h3>Digital närvaro</h3>
         <p>Uppdateringar på hemsidan, SEO och landningssidor.</p>
       </div>
-
-      <!-- Sociala medier -->
       <div class="service-card">
         <div class="icon">
           <i class="fas fa-share-alt"></i>
@@ -296,8 +308,6 @@
         <h3>Sociala medier</h3>
         <p>Planering, inlägg och hantering av dina konton.</p>
       </div>
-
-      <!-- Kommunikation -->
       <div class="service-card">
         <div class="icon">
           <i class="fas fa-envelope-open-text"></i>
@@ -305,7 +315,6 @@
         <h3>Kommunikation</h3>
         <p>Mail, nyhetsbrev och grundläggande kundsupport.</p>
       </div>
-
     </div>
   </section>
 
@@ -330,7 +339,6 @@
   <script>
     const canvas = document.getElementById('bgCanvas');
     const ctx = canvas.getContext('2d');
-
     let w = canvas.width = window.innerWidth;
     let h = canvas.height = window.innerHeight;
 
@@ -374,16 +382,13 @@
         }
       }
 
-      // Rita partiklar
       particles.forEach(p => {
         p.x += p.dx;
         p.y += p.dy;
-
         if (p.x > w) p.x = 0;
         if (p.x < 0) p.x = w;
         if (p.y > h) p.y = 0;
         if (p.y < 0) p.y = h;
-
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
         ctx.fillStyle = p.color;
