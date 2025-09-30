@@ -16,11 +16,34 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #0a1a2f;
+  background: #0a1a2f;
   color: #ffffff;
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  position: relative;
 }
 
+/* ===== Abstrakt bakgrund animation ===== */
+body::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 30%, rgba(0,191,166,0.1), transparent 50%),
+              radial-gradient(circle at 70% 70%, rgba(255,0,170,0.1), transparent 50%);
+  animation: moveBackground 30s linear infinite;
+  z-index: -1;
+}
+
+@keyframes moveBackground {
+  0% { transform: translate(0,0) rotate(0deg);}
+  50% { transform: translate(50px,50px) rotate(180deg);}
+  100% { transform: translate(0,0) rotate(360deg);}
+}
+
+/* ===== Container ===== */
 .container {
   width: 90%;
   max-width: 1200px;
@@ -45,16 +68,11 @@ header {
 }
 
 .logo {
-  display: flex;
-  align-items: center;
   font-weight: 700;
   font-size: 1.5rem;
 }
 
-.logo-icon {
-  margin-right: 10px;
-}
-
+/* Navigation */
 nav ul {
   list-style: none;
   display: flex;
@@ -104,21 +122,14 @@ nav ul li a:hover {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: linear-gradient(135deg, #0a1a2f, #001d3d);
+  background: transparent;
   text-align: center;
   padding-top: 80px;
-  animation: fadeIn 1.5s ease forwards;
 }
 
 .hero h1 {
   font-size: 2.5rem;
   margin-bottom: 20px;
-  opacity: 0;
-  animation: fadeInUp 1s ease forwards;
-}
-
-.hero h1 {
-  animation-delay: 0.5s;
 }
 
 .btn {
@@ -128,10 +139,6 @@ nav ul li a:hover {
   text-decoration: none;
   border-radius: 5px;
   transition: 0.3s;
-  display: inline-block;
-  opacity: 0;
-  animation: fadeInUp 1s ease forwards;
-  animation-delay: 1s;
 }
 
 .btn:hover {
@@ -147,8 +154,6 @@ nav ul li a:hover {
 .services h2 {
   font-size: 2rem;
   margin-bottom: 40px;
-  opacity: 0;
-  animation: fadeIn 1s ease forwards;
 }
 
 .service-cards {
@@ -165,22 +170,21 @@ nav ul li a:hover {
   flex: 1;
   min-width: 250px;
   transition: 0.3s;
-  opacity: 0;
-  animation: fadeInUp 1s ease forwards;
 }
-
-.card:nth-child(1) { animation-delay: 0.2s; }
-.card:nth-child(2) { animation-delay: 0.4s; }
-.card:nth-child(3) { animation-delay: 0.6s; }
 
 .card:hover {
   transform: translateY(-5px);
 }
 
+/* Futuristic SVG icons */
 .card-icon {
-  font-size: 2.5rem;
+  font-size: 3rem;
   margin-bottom: 15px;
-  color: #00bfa6;
+  fill: #00bfa6;
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 15px auto;
+  display: block;
 }
 
 .card h3 {
@@ -203,8 +207,6 @@ nav ul li a:hover {
   flex-wrap: wrap;
   gap: 20px;
   max-width: 1000px;
-  opacity: 0;
-  animation: fadeInUp 1s ease forwards;
 }
 
 .results-text {
@@ -238,21 +240,6 @@ footer {
 footer h2 {
   font-size: 2rem;
   margin-bottom: 20px;
-}
-
-footer .btn {
-  opacity: 1;
-}
-
-/* ===== Animations ===== */
-@keyframes fadeInUp {
-  0% { opacity: 0; transform: translateY(20px);}
-  100% { opacity: 1; transform: translateY(0);}
-}
-
-@keyframes fadeIn {
-  0% { opacity: 0;}
-  100% { opacity: 1;}
 }
 
 /* ===== Responsive ===== */
@@ -298,13 +285,10 @@ footer .btn {
 </head>
 <body>
 
-  <!-- ===== Header / Navbar ===== -->
+  <!-- Header / Navbar -->
   <header>
     <div class="container nav-container">
-      <div class="logo">
-        <span class="logo-icon">🚀</span>
-        <span class="logo-text">SalesFlow</span>
-      </div>
+      <div class="logo">SalesFlow</div>
       <nav>
         <ul class="nav-links">
           <li><a href="#services">Tjänster</a></li>
@@ -321,7 +305,7 @@ footer .btn {
     </div>
   </header>
 
-  <!-- ===== Hero Section ===== -->
+  <!-- Hero Section -->
   <section class="hero">
     <div class="container hero-content">
       <h1>Maximera din försäljning med SalesFlow</h1>
@@ -329,59 +313,18 @@ footer .btn {
     </div>
   </section>
 
-  <!-- ===== Våra tjänster ===== -->
+  <!-- Våra tjänster -->
   <section class="services" id="services">
     <div class="container">
       <h2>Våra tjänster</h2>
       <div class="service-cards">
+        <!-- Card 1 -->
         <div class="card">
-          <div class="card-icon">💡</div>
+          <!-- Futuristic SVG icon -->
+          <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><path d="M32 0a32 32 0 1032 32A32 32 0 0032 0zm0 58A26 26 0 1158 32 26 26 0 0132 58z"/><path d="M32 12a20 20 0 1020 20A20 20 0 0032 12zm0 36a16 16 0 1116-16 16 16 0 01-16 16z"/></svg>
           <h3>Strategi</h3>
           <p>Utveckling av effektiva försäljningsstrategier</p>
         </div>
+        <!-- Card 2 -->
         <div class="card">
-          <div class="card-icon">📈</div>
-          <h3>Försäljning</h3>
-          <p>Optimering av försäljningsprocesser</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">👥</div>
-          <h3>Utbildning</h3>
-          <p>Träning och coaching av säljteam</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Resultat-sektion ===== -->
-  <section class="results" id="case">
-    <div class="container results-container">
-      <div class="results-text">
-        <p class="quote">“SalesFlow hjälpte oss att öka vår försäljning med 30% på bara 6 månader.”</p>
-        <p class="author">Anna Andersson, Företag AB</p>
-      </div>
-      <div class="results-icon">📊</div>
-    </div>
-  </section>
-
-  <!-- ===== Footer / Call to Action ===== -->
-  <footer id="contact">
-    <div class="container footer-content">
-      <h2>Kontakta oss</h2>
-      <a href="#contact" class="btn">Kontakta oss</a>
-    </div>
-  </footer>
-
-  <!-- ===== JS för hamburger ===== -->
-  <script>
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.querySelector('.nav-links');
-
-    hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-      hamburger.classList.toggle('active');
-    });
-  </script>
-
-</body>
-</html>
+          <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><path d="M8 56h48v-4H8v4zm0-12h48v-4H8v4zm0-12h48v-4H8v4zm0-12h48v-4H8v4zm0-12h48V
