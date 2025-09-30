@@ -288,6 +288,15 @@ footer h2 {
     font-size: 2rem;
   }
 }
+/* ===== Canvas för futuristiska partiklar ===== */
+#bgCanvas {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  z-index: -1; /* ligger bakom allt innehåll */
+  pointer-events: none; /* klick går igenom canvas */
+}
+
 </style>
 </head>
 <body>
@@ -366,6 +375,8 @@ footer h2 {
       <a href="#contact" class="btn">Kontakta oss</a>
     </div>
   </footer>
+<!-- Partikelbakgrund -->
+<canvas id="bgCanvas"></canvas>
 
   <!-- JS för hamburger -->
   <script>
@@ -376,6 +387,60 @@ footer h2 {
       navLinks.classList.toggle('active');
       hamburger.classList.toggle('active');
     });
+    <script>
+const canvas = document.getElementById('bgCanvas');
+const ctx = canvas.getContext('2d');
+
+let w = canvas.width = window.innerWidth;
+let h = canvas.height = window.innerHeight;
+
+window.addEventListener('resize', () => {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+});
+
+const particles = [];
+const numParticles = 60;
+
+// Skapa partiklar
+for (let i = 0; i < numParticles; i++) {
+  particles.push({
+    x: Math.random() * w,
+    y: Math.random() * h,
+    r: Math.random() * 3 + 1,
+    dx: (Math.random() - 0.5) * 0.5,
+    dy: (Math.random() - 0.5) * 0.5,
+    color: `hsl(${Math.random()*360}, 70%, 60%)`
+  });
+}
+
+// Animera partiklar
+function animate() {
+  ctx.clearRect(0, 0, w, h);
+  
+  particles.forEach(p => {
+    p.x += p.dx;
+    p.y += p.dy;
+
+    // Wrap around
+    if (p.x > w) p.x = 0;
+    if (p.x < 0) p.x = w;
+    if (p.y > h) p.y = 0;
+    if (p.y < 0) p.y = h;
+
+    // Rita cirkel
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+    ctx.fillStyle = p.color;
+    ctx.fill();
+  });
+  
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+
   </script>
 </body>
 </html>
