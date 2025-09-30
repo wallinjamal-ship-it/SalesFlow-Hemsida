@@ -29,86 +29,108 @@ body {
   <a href="testimonials.html">Kunder</a>
   <a href="contact.html">Kontakt</a>
 </div>
-
+}
+/* Header */
+header {
+    display: flex;
+    justify-content: center; /* centrerar loggan horisontellt */
+    align-items: center;     /* centrerar vertikalt */
+    position: relative;      /* så hamburger kan vara absolute */
+    height: 80px;
+    background: rgba(10,10,10,0.95);
+    z-index: 100;
 }
 
+/* Logga */
 .logo {
     font-weight: 800;
     font-size: 2.5rem;
     letter-spacing: 1px;
     text-align: center;
 }
-
-/* Lysande guld för Smart */
 .logo .smart {
     background: linear-gradient(45deg, #FFD700, #FFA500, #FFF700);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FFA500;
 }
-
-/* Lysande kristallvitt för Flow */
 .logo .flow {
     color: #ffffff;
     text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #aaffff;
 }
 
-
+/* Hamburger */
 .menu-btn {
-  position: absolute;
-  right: 20px;
-  top: 25px;
-  width: 35px;
-  height: 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  cursor: pointer;
-  z-index: 300;
+    position: absolute;
+    right: 20px;
+    top: 25px;
+    width: 35px;
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 300;
 }
 .menu-btn span {
-  display: block;
-  height: 4px;
-  background: #f5f5f5;
-  border-radius: 2px;
-  transition: 0.4s;
+    display: block;
+    height: 4px;
+    background: #f5f5f5;
+    border-radius: 2px;
+    transition: 0.4s;
 }
-
-/* Hamburger animation till X */
 .menu-btn.active span:nth-child(1) {
-  transform: rotate(45deg) translate(7px, 7px);
+    transform: rotate(45deg) translate(7px, 7px);
 }
-.menu-btn.active span:nth-child(2) {
-  opacity: 0;
-}
+.menu-btn.active span:nth-child(2) { opacity: 0; }
 .menu-btn.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(7px, -7px);
+    transform: rotate(-45deg) translate(7px, -7px);
 }
 
 /* Menypanel */
 .menu-panel {
-  position: fixed;
-  top: 0; right: -300px;
-  width: 300px;
-  height: 100%;
-  background: rgba(0,0,0,0.95);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transition: right 0.5s ease;
-  z-index: 200;
+    position: fixed;
+    top: 0; right: -300px;
+    width: 300px;
+    height: 100%;
+    background: linear-gradient(180deg, #0a0a0a, #11111f, #1a1a2e);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: right 0.5s ease;
+    z-index: 200;
 }
 .menu-panel.active { right: 0; }
+
+/* Länkar med animation */
 .menu-panel a {
-  color: #f5f5f5;
-  text-decoration: none;
-  font-size: 1.5rem;
-  margin: 20px 0;
-  transition: color 0.3s;
+    color: #f5f5f5;
+    text-decoration: none;
+    font-size: 1.5rem;
+    margin: 20px 0;
+    opacity: 0;
+    transform: translateX(50px);
+    animation: slideIn 0.4s forwards;
+}
+.menu-panel a:nth-child(1) { animation-delay: 0.1s; }
+.menu-panel a:nth-child(2) { animation-delay: 0.2s; }
+.menu-panel a:nth-child(3) { animation-delay: 0.3s; }
+.menu-panel a:nth-child(4) { animation-delay: 0.4s; }
+.menu-panel a:nth-child(5) { animation-delay: 0.5s; }
+.menu-panel.active a { opacity: 1; transform: translateX(0); }
+
+@keyframes slideIn {
+    to { opacity: 1; transform: translateX(0); }
 }
 .menu-panel a:hover { color: gold; }
+const menuBtn = document.getElementById('menuBtn');
+const menuPanel = document.getElementById('menuPanel');
 
+menuBtn.addEventListener('click', () => {
+  menuBtn.classList.toggle('active');   // hamburger → X
+  menuPanel.classList.toggle('active'); // fäll ut / stäng menyn
+});
 
 .hero {
     display: flex;
