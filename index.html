@@ -6,36 +6,21 @@
 <title>SmartFlow - AI Smart Solutions</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
+/* Grundinställningar */
 body {
+    margin: 0;
     font-family: 'Inter', sans-serif;
-    margin: 0; padding: 0;
     background: #0a0a0a;
     color: #f5f5f5;
+    overflow-x: hidden;
 }
 
-<header>
-  <div class="logo"><span class="smart">Smart</span><span class="flow">Flow</span></div>
-  <div class="menu-btn" id="menuBtn">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-</header>
-
-<div class="menu-panel" id="menuPanel">
-  <a href="index.html">Startsida</a>
-  <a href="services.html">Tjänster</a>
-  <a href="about.html">Om oss</a>
-  <a href="testimonials.html">Kunder</a>
-  <a href="contact.html">Kontakt</a>
-</div>
-}
 /* Header */
 header {
     display: flex;
-    justify-content: center; /* centrerar loggan horisontellt */
-    align-items: center;     /* centrerar vertikalt */
-    position: relative;      /* så hamburger kan vara absolute */
+    justify-content: center;
+    align-items: center;
+    position: relative;
     height: 80px;
     background: rgba(10,10,10,0.95);
     z-index: 100;
@@ -49,14 +34,14 @@ header {
     text-align: center;
 }
 .logo .smart {
-    background: linear-gradient(45deg, #FFD700, #FFA500, #FFF700);
+    background: linear-gradient(45deg, #FFD700, #FFC966);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FFA500;
+    text-shadow: 0 0 5px #FFD700, 0 0 10px #FFC966;
 }
 .logo .flow {
     color: #ffffff;
-    text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #aaffff;
+    text-shadow: 0 0 5px #ffffff, 0 0 10px #e6f7ff;
 }
 
 /* Hamburger */
@@ -79,13 +64,9 @@ header {
     border-radius: 2px;
     transition: 0.4s;
 }
-.menu-btn.active span:nth-child(1) {
-    transform: rotate(45deg) translate(7px, 7px);
-}
+.menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(7px, 7px); }
 .menu-btn.active span:nth-child(2) { opacity: 0; }
-.menu-btn.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -7px);
-}
+.menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
 
 /* Menypanel */
 .menu-panel {
@@ -100,10 +81,9 @@ header {
     justify-content: center;
     transition: right 0.5s ease;
     z-index: 200;
+    box-shadow: -5px 0 20px rgba(0,0,0,0.5);
 }
 .menu-panel.active { right: 0; }
-
-/* Länkar med animation */
 .menu-panel a {
     color: #f5f5f5;
     text-decoration: none;
@@ -119,19 +99,9 @@ header {
 .menu-panel a:nth-child(4) { animation-delay: 0.4s; }
 .menu-panel a:nth-child(5) { animation-delay: 0.5s; }
 .menu-panel.active a { opacity: 1; transform: translateX(0); }
-
-@keyframes slideIn {
-    to { opacity: 1; transform: translateX(0); }
-}
 .menu-panel a:hover { color: gold; }
-const menuBtn = document.getElementById('menuBtn');
-const menuPanel = document.getElementById('menuPanel');
 
-menuBtn.addEventListener('click', () => {
-  menuBtn.classList.toggle('active');   // hamburger → X
-  menuPanel.classList.toggle('active'); // fäll ut / stäng menyn
-});
-
+/* Hero-sektion */
 .hero {
     display: flex;
     flex-direction: column;
@@ -140,32 +110,78 @@ menuBtn.addEventListener('click', () => {
     height: calc(100vh - 80px);
     text-align: center;
     background: linear-gradient(135deg, #0a0a0a, #1a1a2e, #162447);
+    padding: 0 20px;
 }
-.hero h2 { font-size: 3rem; margin-bottom: 20px; color: #f5f5f5; }
-.hero p { font-size: 1.3rem; max-width: 700px; color: #f5f5f5; }
+.hero h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #f5f5f5;
+}
+.hero p {
+    font-size: 1.3rem;
+    max-width: 700px;
+    color: #f5f5f5;
+    margin-bottom: 30px;
+}
+.hero .cta-btn {
+    padding: 15px 35px;
+    background: gold;
+    border: none;
+    border-radius: 30px;
+    color: #0a0a0a;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.hero .cta-btn:hover {
+    background: #ffc966;
+    transform: scale(1.05);
+}
+
+/* Animation för menylänkar */
+@keyframes slideIn { to { opacity: 1; transform: translateX(0); } }
+
+/* Responsiv design */
+@media screen and (max-width: 768px) {
+    .logo { font-size: 2rem; }
+    .hero h2 { font-size: 2rem; }
+    .hero p { font-size: 1rem; }
+    .hero .cta-btn { padding: 12px 25px; font-size: 1rem; }
+    .menu-panel { width: 250px; }
+}
+
+@media screen and (max-width: 480px) {
+    .logo { font-size: 1.7rem; }
+    .hero h2 { font-size: 1.5rem; }
+    .hero p { font-size: 0.9rem; }
+    .hero .cta-btn { padding: 10px 20px; font-size: 0.9rem; }
+    .menu-panel { width: 200px; }
+}
 </style>
 </head>
 <body>
 
 <header>
-    <div class="logo"><span class="smart">Smart</span><span class="flow">Flow</span></div>
-    <div class="menu-btn" id="menuBtn">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
+  <div class="logo"><span class="smart">Smart</span><span class="flow">Flow</span></div>
+  <div class="menu-btn" id="menuBtn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 </header>
 
 <div class="menu-panel" id="menuPanel">
-    <a href="services.html">Tjänster</a>
-    <a href="about.html">Om oss</a>
-    <a href="testimonials.html">Kunder</a>
-    <a href="contact.html">Kontakt</a>
+  <a href="index.html">Startsida</a>
+  <a href="services.html">Tjänster</a>
+  <a href="about.html">Om oss</a>
+  <a href="testimonials.html">Kunder</a>
+  <a href="contact.html">Kontakt</a>
 </div>
 
 <section class="hero">
-    <h2>AI som förändrar din verksamhet</h2>
-    <p>SmartFlow erbjuder smarta AI-lösningar som automatiserar, analyserar och maximerar din potential.</p>
+  <h2>AI som förändrar din verksamhet</h2>
+  <p>SmartFlow erbjuder smarta AI-lösningar som automatiserar, analyserar och maximerar din potential.</p>
+  <button class="cta-btn">Kom igång</button>
 </section>
 
 <script>
@@ -173,7 +189,8 @@ const menuBtn = document.getElementById('menuBtn');
 const menuPanel = document.getElementById('menuPanel');
 
 menuBtn.addEventListener('click', () => {
-    menuPanel.classList.toggle('active');
+  menuBtn.classList.toggle('active'); // hamburger → X
+  menuPanel.classList.toggle('active'); // fäll ut/stäng menyn
 });
 </script>
 
