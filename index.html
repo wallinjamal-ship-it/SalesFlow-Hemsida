@@ -7,15 +7,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
+    /* Grundläggande */
     body {
         font-family: 'Inter', sans-serif;
         margin: 0;
         padding: 0;
-        background: #111;
+        background: #0a0a0a;
+        color: #f5f5f5;
         scroll-behavior: smooth;
     }
+    a { text-decoration: none; color: inherit; }
+
+    /* Header */
     header {
-        background: rgba(24,40,72,0.95);
+        background: rgba(10,10,10,0.95);
         color: white;
         padding: 20px 50px;
         display: flex;
@@ -26,9 +31,10 @@
         z-index: 100;
     }
     header h1 { margin: 0; font-weight: 700; letter-spacing: 1px; }
-    nav a { color: white; margin-left: 25px; text-decoration: none; font-weight: 600; transition: 0.3s; }
-    nav a:hover { color: #4b6cb7; }
+    nav a { color: #f5f5f5; margin-left: 25px; font-weight: 600; transition: 0.3s; }
+    nav a:hover { color: gold; }
 
+    /* Hero */
     .hero {
         position: relative;
         height: 100vh;
@@ -37,14 +43,13 @@
         justify-content: center;
         align-items: center;
         text-align: center;
-        color: white;
-        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
         overflow: hidden;
+        background: linear-gradient(135deg, #0a0a0a, #1a1a2e, #162447);
     }
     .hero::before {
         content: "";
         position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
+        top:0; left:0; right:0; bottom:0;
         background: rgba(0,0,0,0.5);
         z-index: 1;
     }
@@ -53,22 +58,29 @@
         z-index: 2;
     }
     .hero h2 { font-size: 3rem; margin-bottom: 20px; }
-    .hero p { font-size: 1.3rem; margin-bottom: 40px; max-width: 700px; }
+    .hero p { font-size: 1.3rem; margin-bottom: 40px; max-width: 700px; color: #f5f5f5; }
     .btn {
-        background: #4b6cb7;
-        color: white;
+        background: gold;
+        color: #0a0a0a;
         padding: 15px 30px;
         border: none;
         border-radius: 5px;
         font-weight: 600;
         cursor: pointer;
         transition: 0.3s;
+        box-shadow: 0 0 15px rgba(255,215,0,0.6);
     }
-    .btn:hover { background: #182848; transform: scale(1.05); }
+    .btn:hover {
+        background: #ffd700;
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(255,215,0,0.9);
+    }
 
+    /* Sektioner */
     section { padding: 80px 50px; max-width: 1200px; margin: auto; }
-    h3 { text-align: center; margin-bottom: 50px; font-size: 2.5rem; color: white; }
+    h3 { text-align: center; margin-bottom: 50px; font-size: 2.5rem; color: #f5f5f5; }
 
+    /* Tjänster */
     .services-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -84,20 +96,35 @@
     }
     .service-item:hover {
         transform: translateY(-10px);
-        box-shadow: 0 12px 30px rgba(0,0,0,0.5);
-        background: rgba(255,255,255,0.1);
+        box-shadow: 0 12px 30px rgba(255,215,0,0.5);
+        background: rgba(255,215,0,0.05);
     }
-    .service-item i { font-size: 50px; color: #4b6cb7; margin-bottom: 20px; }
+    .service-item i { font-size: 50px; color: gold; margin-bottom: 20px; }
 
+    /* About */
     .about p {
         font-size: 1.2rem;
         line-height: 1.8;
         text-align: center;
         max-width: 800px;
         margin: auto;
-        color: white;
+        color: #f5f5f5;
     }
 
+    /* Testimonials */
+    .testimonials { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 30px; }
+    .testimonial {
+        background: rgba(255,255,255,0.05);
+        padding: 30px 20px;
+        border-radius: 10px;
+        text-align: center;
+        color: #f5f5f5;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        transition: transform 0.3s;
+    }
+    .testimonial:hover { transform: translateY(-10px); }
+
+    /* Kontakt */
     .contact form {
         display: flex;
         flex-direction: column;
@@ -113,14 +140,15 @@
     }
     .contact button.btn { width: 150px; margin: auto; }
 
+    /* Footer */
     footer {
         text-align: center;
         padding: 30px 0;
-        background: #182848;
-        color: white;
+        background: #111;
+        color: #f5f5f5;
     }
 
-    /* Scroll animations */
+    /* Scroll-animation */
     .fadeInOnScroll { opacity: 0; transform: translateY(50px); transition: all 0.8s ease-out; }
     .fadeInOnScroll.visible { opacity: 1; transform: translateY(0); }
 
@@ -139,6 +167,7 @@
     <nav>
         <a href="#services">Tjänster</a>
         <a href="#about">Om oss</a>
+        <a href="#testimonials">Kunder</a>
         <a href="#contact">Kontakt</a>
     </nav>
 </header>
@@ -173,6 +202,15 @@
 <section class="about" id="about">
     <h3>Om SmartFlow</h3>
     <p>SmartFlow är ett AI-konsultbolag som hjälper företag att implementera smarta lösningar som sparar tid, ökar effektivitet och ger bättre resultat. Vi kombinerar teknik med strategi för att skapa verkligt värde.</p>
+</section>
+
+<section class="testimonials" id="testimonials">
+    <h3>Vad våra kunder säger</h3>
+    <div class="testimonials">
+        <div class="testimonial fadeInOnScroll">"SmartFlow gjorde vår process 10x snabbare!" – Anna, VD</div>
+        <div class="testimonial fadeInOnScroll">"Fantastisk AI-lösning och support!" – Erik, CTO</div>
+        <div class="testimonial fadeInOnScroll">"Vi sparade massor av tid och pengar." – Sofia, Projektledare</div>
+    </div>
 </section>
 
 <section class="contact" id="contact">
