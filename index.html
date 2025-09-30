@@ -23,20 +23,43 @@ body {
   position: relative;
 }
 
-/* ===== Abstrakt bakgrund animation ===== */
+/* ===== Abstrakt futuristisk bakgrund ===== */
 body::before {
   content: '';
   position: fixed;
-  top: -50%;
-  left: -50%;
+  top: 0;
+  left: 0;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle at 30% 30%, rgba(0,191,166,0.1), transparent 50%),
-              radial-gradient(circle at 70% 70%, rgba(255,0,170,0.1), transparent 50%);
-  animation: moveBackground 30s linear infinite;
+  background: repeating-linear-gradient(
+      45deg,
+      rgba(0,191,166,0.05),
+      rgba(0,191,166,0.05) 1px,
+      transparent 1px,
+      transparent 20px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255,0,170,0.05),
+      rgba(255,0,170,0.05) 1px,
+      transparent 1px,
+      transparent 20px
+    );
+  animation: moveLines 40s linear infinite, shiftColors 30s linear infinite;
   z-index: -1;
 }
 
+@keyframes moveLines {
+  0% { transform: translate(0,0);}
+  50% { transform: translate(50px,50px);}
+  100% { transform: translate(0,0);}
+}
+
+@keyframes shiftColors {
+  0% { filter: hue-rotate(0deg);}
+  100% { filter: hue-rotate(360deg);}
+}
+  
 @keyframes moveBackground {
   0% { transform: translate(0,0) rotate(0deg);}
   50% { transform: translate(50px,50px) rotate(180deg);}
