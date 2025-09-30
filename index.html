@@ -24,12 +24,26 @@ header {
 }
 
 .logo {
-    font-weight: 700;
-    font-size: 2rem;
+    font-weight: 800;
+    font-size: 2.5rem;
     letter-spacing: 1px;
+    text-align: center;
 }
-.logo .smart { color: gold; }
-.logo .flow { color: FFFFFF; }
+
+/* Lysande guld för Smart */
+.logo .smart {
+    background: linear-gradient(45deg, #FFD700, #FFA500, #FFF700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FFA500;
+}
+
+/* Lysande kristallvitt för Flow */
+.logo .flow {
+    color: #ffffff;
+    text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #aaffff;
+}
+
 
 .menu-btn {
     position: absolute;
