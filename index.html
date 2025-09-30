@@ -4,12 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SmartFlow - AI Smart Solutions</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
 <style>
-/* Grundinställningar */
 body {
     margin: 0;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     background: #0a0a0a;
     color: #f5f5f5;
     overflow-x: hidden;
@@ -28,20 +27,19 @@ header {
 
 /* Logga */
 .logo {
-    font-weight: 800;
+    font-weight: 700;
     font-size: 2.5rem;
-    letter-spacing: 1px;
     text-align: center;
 }
 .logo .smart {
-    background: linear-gradient(45deg, #FFD700, #FFC966);
+    background: linear-gradient(45deg, #E6C200, #FFD700);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 5px #FFD700, 0 0 10px #FFC966;
+    text-shadow: 0 0 3px #E6C200, 0 0 6px #FFD700;
 }
 .logo .flow {
     color: #ffffff;
-    text-shadow: 0 0 5px #ffffff, 0 0 10px #e6f7ff;
+    text-shadow: 0 0 2px #ffffff, 0 0 5px #e6f7ff;
 }
 
 /* Hamburger */
@@ -62,28 +60,38 @@ header {
     height: 4px;
     background: #f5f5f5;
     border-radius: 2px;
-    transition: 0.4s;
+    transition: 0.5s;
 }
-.menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(7px, 7px); }
-.menu-btn.active span:nth-child(2) { opacity: 0; }
-.menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+
+/* Hamburger animation - unik rotering + scale */
+.menu-btn.active span:nth-child(1) {
+    transform: rotate(45deg) scaleX(1.2);
+}
+.menu-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+.menu-btn.active span:nth-child(3) {
+    transform: rotate(-45deg) scaleX(1.2);
+}
 
 /* Menypanel */
 .menu-panel {
     position: fixed;
-    top: 0; right: -300px;
-    width: 300px;
+    top: 0; right: 0;
+    width: 0;
     height: 100%;
-    background: linear-gradient(180deg, #0a0a0a, #11111f, #1a1a2e);
+    background: linear-gradient(120deg, #0a0a0a, #1a1a2e, #11111f);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    transition: right 0.5s ease;
+    overflow: hidden;
+    transition: width 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* unik easing */
     z-index: 200;
-    box-shadow: -5px 0 20px rgba(0,0,0,0.5);
 }
-.menu-panel.active { right: 0; }
+.menu-panel.active {
+    width: 300px;
+}
 .menu-panel a {
     color: #f5f5f5;
     text-decoration: none;
@@ -91,14 +99,12 @@ header {
     margin: 20px 0;
     opacity: 0;
     transform: translateX(50px);
-    animation: slideIn 0.4s forwards;
+    transition: all 0.5s ease;
 }
-.menu-panel a:nth-child(1) { animation-delay: 0.1s; }
-.menu-panel a:nth-child(2) { animation-delay: 0.2s; }
-.menu-panel a:nth-child(3) { animation-delay: 0.3s; }
-.menu-panel a:nth-child(4) { animation-delay: 0.4s; }
-.menu-panel a:nth-child(5) { animation-delay: 0.5s; }
-.menu-panel.active a { opacity: 1; transform: translateX(0); }
+.menu-panel.active a {
+    opacity: 1;
+    transform: translateX(0);
+}
 .menu-panel a:hover { color: gold; }
 
 /* Hero-sektion */
@@ -134,12 +140,9 @@ header {
     transition: all 0.3s ease;
 }
 .hero .cta-btn:hover {
-    background: #ffc966;
+    background: #e6c200;
     transform: scale(1.05);
 }
-
-/* Animation för menylänkar */
-@keyframes slideIn { to { opacity: 1; transform: translateX(0); } }
 
 /* Responsiv design */
 @media screen and (max-width: 768px) {
@@ -147,15 +150,14 @@ header {
     .hero h2 { font-size: 2rem; }
     .hero p { font-size: 1rem; }
     .hero .cta-btn { padding: 12px 25px; font-size: 1rem; }
-    .menu-panel { width: 250px; }
+    .menu-panel.active { width: 250px; }
 }
-
 @media screen and (max-width: 480px) {
     .logo { font-size: 1.7rem; }
     .hero h2 { font-size: 1.5rem; }
     .hero p { font-size: 0.9rem; }
     .hero .cta-btn { padding: 10px 20px; font-size: 0.9rem; }
-    .menu-panel { width: 200px; }
+    .menu-panel.active { width: 200px; }
 }
 </style>
 </head>
@@ -189,8 +191,8 @@ const menuBtn = document.getElementById('menuBtn');
 const menuPanel = document.getElementById('menuPanel');
 
 menuBtn.addEventListener('click', () => {
-  menuBtn.classList.toggle('active'); // hamburger → X
-  menuPanel.classList.toggle('active'); // fäll ut/stäng menyn
+    menuBtn.classList.toggle('active');
+    menuPanel.classList.toggle('active');
 });
 </script>
 
