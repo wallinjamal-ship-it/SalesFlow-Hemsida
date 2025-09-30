@@ -4,211 +4,383 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SalesFlow</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  /* ===== Bakgrund och layout ===== */
-  body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    overflow: hidden;
-    display: flex;
+/* ===== Global ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #0a1a2f;
+  color: #ffffff;
+  scroll-behavior: smooth;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===== Header / Navbar ===== */
+header {
+  width: 100%;
+  padding: 20px 0;
+  background: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.logo-icon {
+  margin-right: 10px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #ffffff;
+  transition: 0.3s;
+}
+
+nav ul li a:hover {
+  color: #00bfa6;
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: #00bfa6;
+  transition: 0.3s;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ===== Hero Section ===== */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #0a1a2f, #001d3d);
+  text-align: center;
+  padding-top: 80px;
+  animation: fadeIn 1.5s ease forwards;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.hero h1 {
+  animation-delay: 0.5s;
+}
+
+.btn {
+  background-color: #00bfa6;
+  color: #ffffff;
+  padding: 15px 30px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: 0.3s;
+  display: inline-block;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 1s;
+}
+
+.btn:hover {
+  background-color: #00a38f;
+}
+
+/* ===== Services ===== */
+.services {
+  padding: 80px 0;
+  text-align: center;
+}
+
+.services h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+
+.service-cards {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: #0f2a4b;
+  padding: 30px 20px;
+  border-radius: 10px;
+  flex: 1;
+  min-width: 250px;
+  transition: 0.3s;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.card:nth-child(1) { animation-delay: 0.2s; }
+.card:nth-child(2) { animation-delay: 0.4s; }
+.card:nth-child(3) { animation-delay: 0.6s; }
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  color: #00bfa6;
+}
+
+.card h3 {
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+}
+
+/* ===== Results Section ===== */
+.results {
+  background-color: #0f2a4b;
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.results-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 1000px;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.results-text {
+  flex: 1;
+  min-width: 250px;
+}
+
+.results-icon {
+  font-size: 4rem;
+  color: #00bfa6;
+}
+
+.quote {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+.author {
+  font-size: 1rem;
+  color: #cccccc;
+}
+
+/* ===== Footer / CTA ===== */
+footer {
+  background-color: #0a1a2f;
+  padding: 60px 0;
+  text-align: center;
+}
+
+footer h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+footer .btn {
+  opacity: 1;
+}
+
+/* ===== Animations ===== */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px);}
+  100% { opacity: 1; transform: translateY(0);}
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0;}
+  100% { opacity: 1;}
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  nav ul {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background: #0a1a2f;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #111111;
-    font-family: 'Arial', sans-serif;
+    width: 200px;
+    padding: 20px;
+    display: none;
+    border-radius: 5px;
   }
 
-  /* ===== Partikel-canvas ===== */
-  #particles {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
+  nav ul.active {
+    display: flex;
   }
 
-  /* ===== Hamburger-meny ===== */
   .hamburger {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 35px;
-    height: 3px;
-    background-color: #00ffcc;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    z-index: 2;
+    display: flex;
   }
 
-  .hamburger::before,
-  .hamburger::after {
-    content: '';
-    position: absolute;
-    width: 35px;
-    height: 3px;
-    background-color: #00ffcc;
-    transition: all 0.3s ease;
+  .service-cards {
+    flex-direction: column;
   }
 
-  .hamburger::before {
-    transform: translateY(-10px);
+  .results-container {
+    flex-direction: column;
+    text-align: center;
   }
 
-  .hamburger::after {
-    transform: translateY(10px);
+  .results-icon {
+    margin-top: 20px;
   }
 
-  .hamburger.active {
-    background-color: transparent;
+  .hero h1 {
+    font-size: 2rem;
   }
-
-  .hamburger.active::before {
-    transform: rotate(45deg);
-  }
-
-  .hamburger.active::after {
-    transform: rotate(-45deg);
-  }
-
-  /* ===== Animerad text ===== */
-  .animated-text {
-    position: relative;
-    font-size: 4rem;
-    font-weight: bold;
-    color: #00ffcc;
-    text-shadow:
-      0 0 5px #00ffcc,
-      0 0 10px #00ffcc,
-      0 0 20px #ff00aa,
-      0 0 30px #ff00aa,
-      0 0 40px #ff00aa,
-      0 0 50px #ff00aa;
-    opacity: 0;
-    animation: fadeInPulse 3s ease forwards;
-    transition: all 0.3s ease;
-    z-index: 1;
-  }
-
-  .animated-text:hover {
-    color: #ff00aa;
-    text-shadow:
-      0 0 10px #ff00aa,
-      0 0 20px #ff00aa,
-      0 0 30px #00ffcc,
-      0 0 40px #00ffcc,
-      0 0 50px #00ffcc;
-    transform: scale(1.1);
-  }
-
-  /* ===== Keyframes ===== */
-  @keyframes fadeInPulse {
-    0% {
-      opacity: 0;
-      transform: translateY(20px) scale(0.95);
-      text-shadow: 0 0 5px #00ffcc;
-    }
-    50% {
-      opacity: 1;
-      transform: translateY(0) scale(1.05);
-      text-shadow:
-        0 0 10px #00ffcc,
-        0 0 20px #ff00aa,
-        0 0 30px #ff00aa;
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-      text-shadow:
-        0 0 5px #00ffcc,
-        0 0 10px #00ffcc,
-        0 0 20px #ff00aa,
-        0 0 30px #ff00aa,
-        0 0 40px #ff00aa;
-    }
-  }
-
+}
 </style>
 </head>
 <body>
 
-  <!-- Partikel-canvas -->
-  <canvas id="particles"></canvas>
+  <!-- ===== Header / Navbar ===== -->
+  <header>
+    <div class="container nav-container">
+      <div class="logo">
+        <span class="logo-icon">🚀</span>
+        <span class="logo-text">SalesFlow</span>
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#services">Tjänster</a></li>
+          <li><a href="#case">Case</a></li>
+          <li><a href="#about">Om oss</a></li>
+          <li><a href="#contact">Kontakt</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </div>
+  </header>
 
-  <!-- Hamburger-meny -->
-  <div class="hamburger" id="hamburger"></div>
+  <!-- ===== Hero Section ===== -->
+  <section class="hero">
+    <div class="container hero-content">
+      <h1>Maximera din försäljning med SalesFlow</h1>
+      <a href="#contact" class="btn">Kontakta oss</a>
+    </div>
+  </section>
 
-  <!-- Animerad text -->
-  <div class="animated-text">SalesFlow</div>
+  <!-- ===== Våra tjänster ===== -->
+  <section class="services" id="services">
+    <div class="container">
+      <h2>Våra tjänster</h2>
+      <div class="service-cards">
+        <div class="card">
+          <div class="card-icon">💡</div>
+          <h3>Strategi</h3>
+          <p>Utveckling av effektiva försäljningsstrategier</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📈</div>
+          <h3>Försäljning</h3>
+          <p>Optimering av försäljningsprocesser</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">👥</div>
+          <h3>Utbildning</h3>
+          <p>Träning och coaching av säljteam</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- ===== Resultat-sektion ===== -->
+  <section class="results" id="case">
+    <div class="container results-container">
+      <div class="results-text">
+        <p class="quote">“SalesFlow hjälpte oss att öka vår försäljning med 30% på bara 6 månader.”</p>
+        <p class="author">Anna Andersson, Företag AB</p>
+      </div>
+      <div class="results-icon">📊</div>
+    </div>
+  </section>
+
+  <!-- ===== Footer / Call to Action ===== -->
+  <footer id="contact">
+    <div class="container footer-content">
+      <h2>Kontakta oss</h2>
+      <a href="#contact" class="btn">Kontakta oss</a>
+    </div>
+  </footer>
+
+  <!-- ===== JS för hamburger ===== -->
   <script>
-    // Hamburger-meny toggle
     const hamburger = document.getElementById('hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
     hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
       hamburger.classList.toggle('active');
     });
-
-    // ===== Partiklar =====
-    const canvas = document.getElementById('particles');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const particlesArray = [];
-    const colors = ['#00ffcc', '#ff00aa', '#00aaff'];
-
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 3 + 1;
-        this.speedX = Math.random() * 1 - 0.5;
-        this.speedY = Math.random() * 1 - 0.5;
-        this.color = colors[Math.floor(Math.random() * colors.length)];
-      }
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-
-        // Wrap around
-        if (this.x > canvas.width) this.x = 0;
-        if (this.x < 0) this.x = canvas.width;
-        if (this.y > canvas.height) this.y = 0;
-        if (this.y < 0) this.y = canvas.height;
-      }
-      draw() {
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
-    function init() {
-      for (let i = 0; i < 100; i++) {
-        particlesArray.push(new Particle());
-      }
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particlesArray.forEach(p => {
-        p.update();
-        p.draw();
-      });
-      requestAnimationFrame(animate);
-    }
-
-    init();
-    animate();
-
-    // Anpassa canvas vid fönsterstorlek
-    window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    });
-
   </script>
 
 </body>
