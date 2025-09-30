@@ -327,4 +327,48 @@ footer h2 {
         </div>
         <!-- Card 2 -->
         <div class="card">
-          <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><path d="M8 56h48v-4H8v4zm0-12h48v-4H8v4zm0-12h48v-4H8v4zm0-12h48v-4H8v4zm0-12h48V
+          <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><path d="M8 56h48v-4H8v4zm0-12h48v-4H8v4zm0-12h48v-4H8v4zm0-12h48v-4H8v4zm0-12h48V4H8v4z"/></svg>
+          <h3>Försäljning</h3>
+          <p>Optimering av försäljningsprocesser</p>
+        </div>
+        <!-- Card 3 -->
+        <div class="card">
+          <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><path d="M32 32a12 12 0 1012 12A12 12 0 0032 32zm0 20a8 8 0 118-8 8 8 0 01-8 8z"/><path d="M16 16h32v4H16zM16 24h32v4H16z"/></svg>
+          <h3>Utbildning</h3>
+          <p>Träning och coaching av säljteam</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resultat-sektion -->
+  <section class="results" id="case">
+    <div class="container results-container">
+      <div class="results-text">
+        <p class="quote">“SalesFlow hjälpte oss att öka vår försäljning med 30% på bara 6 månader.”</p>
+        <p class="author">Anna Andersson, Företag AB</p>
+      </div>
+      <div class="results-icon">📊</div>
+    </div>
+  </section>
+
+  <!-- Footer / CTA -->
+  <footer id="contact">
+    <div class="container footer-content">
+      <h2>Kontakta oss</h2>
+      <a href="#contact" class="btn">Kontakta oss</a>
+    </div>
+  </footer>
+
+  <!-- JS för hamburger -->
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      hamburger.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
