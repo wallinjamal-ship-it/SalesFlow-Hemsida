@@ -6,6 +6,7 @@
 <title>SmartFlow - AI Smart Solutions</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
 <style>
+/* Grundinställningar */
 body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
@@ -32,13 +33,13 @@ header {
     text-align: center;
 }
 .logo .smart {
-    background: linear-gradient(45deg, #FFD700, #FFEB99); /* ljusare guld */
+    background: linear-gradient(45deg, #FFD700, #FFEB99);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 2px #FFD700, 0 0 5px #FFEB99; /* mild glow */
+    text-shadow: 0 0 2px #FFD700, 0 0 5px #FFEB99;
 }
 .logo .flow {
-    color: #ffffff; /* kristallvit */
+    color: #ffffff;
     text-shadow: 0 0 2px #ffffff, 0 0 4px #e6f7ff;
 }
 
@@ -62,17 +63,9 @@ header {
     border-radius: 2px;
     transition: 0.5s;
 }
-
-/* Hamburger animation - unik rotering + scale */
-.menu-btn.active span:nth-child(1) {
-    transform: rotate(45deg) scaleX(1.2);
-}
-.menu-btn.active span:nth-child(2) {
-    opacity: 0;
-}
-.menu-btn.active span:nth-child(3) {
-    transform: rotate(-45deg) scaleX(1.2);
-}
+.menu-btn.active span:nth-child(1) { transform: rotate(45deg) scaleX(1.2); }
+.menu-btn.active span:nth-child(2) { opacity: 0; }
+.menu-btn.active span:nth-child(3) { transform: rotate(-45deg) scaleX(1.2); }
 
 /* Menypanel */
 .menu-panel {
@@ -86,12 +79,10 @@ header {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    transition: width 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* unik easing */
+    transition: width 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
     z-index: 200;
 }
-.menu-panel.active {
-    width: 300px;
-}
+.menu-panel.active { width: 300px; }
 .menu-panel a {
     color: #f5f5f5;
     text-decoration: none;
@@ -101,10 +92,7 @@ header {
     transform: translateX(50px);
     transition: all 0.5s ease;
 }
-.menu-panel.active a {
-    opacity: 1;
-    transform: translateX(0);
-}
+.menu-panel.active a { opacity: 1; transform: translateX(0); }
 .menu-panel a:hover { color: gold; }
 
 /* Hero-sektion */
@@ -139,10 +127,7 @@ header {
     cursor: pointer;
     transition: all 0.3s ease;
 }
-.hero .cta-btn:hover {
-    background: #e6c200;
-    transform: scale(1.05);
-}
+.hero .cta-btn:hover { background: #e6c200; transform: scale(1.05); }
 
 /* Responsiv design */
 @media screen and (max-width: 768px) {
@@ -190,15 +175,6 @@ header {
 const menuBtn = document.getElementById('menuBtn');
 const menuPanel = document.getElementById('menuPanel');
 
-menuBtn.addEventListener('click', () => {
-    menuBtn.classList.toggle('active');
-    menuPanel.classList.toggle('active');
-});
-</script>
-const menuBtn = document.getElementById('menuBtn');
-const menuPanel = document.getElementById('menuPanel');
-
-// Funktion för att toggla panelen
 function toggleMenu() {
     menuBtn.classList.toggle('active');
     menuPanel.classList.toggle('active');
@@ -209,6 +185,7 @@ menuBtn.addEventListener('click', toggleMenu);
 
 // Klick på panelen stänger den också
 menuPanel.addEventListener('click', toggleMenu);
+</script>
 
 </body>
 </html>
