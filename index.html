@@ -32,14 +32,14 @@ header {
     text-align: center;
 }
 .logo .smart {
-    background: linear-gradient(45deg, #E6C200, #FFD700);
+    background: linear-gradient(45deg, #FFD700, #FFEB99); /* ljusare guld */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 3px #E6C200, 0 0 6px #FFD700;
+    text-shadow: 0 0 2px #FFD700, 0 0 5px #FFEB99; /* mild glow */
 }
 .logo .flow {
-    color: #ffffff;
-    text-shadow: 0 0 2px #ffffff, 0 0 5px #e6f7ff;
+    color: #ffffff; /* kristallvit */
+    text-shadow: 0 0 2px #ffffff, 0 0 4px #e6f7ff;
 }
 
 /* Hamburger */
@@ -195,6 +195,20 @@ menuBtn.addEventListener('click', () => {
     menuPanel.classList.toggle('active');
 });
 </script>
+const menuBtn = document.getElementById('menuBtn');
+const menuPanel = document.getElementById('menuPanel');
+
+// Funktion för att toggla panelen
+function toggleMenu() {
+    menuBtn.classList.toggle('active');
+    menuPanel.classList.toggle('active');
+}
+
+// Klick på hamburger
+menuBtn.addEventListener('click', toggleMenu);
+
+// Klick på panelen stänger den också
+menuPanel.addEventListener('click', toggleMenu);
 
 </body>
 </html>
