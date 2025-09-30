@@ -46,10 +46,6 @@
       flex-wrap: wrap;
     }
 
-    nav ul li {
-      position: relative;
-    }
-
     nav ul li a {
       text-decoration: none;
       color: #fff;
@@ -73,57 +69,6 @@
       background: #fff;
       margin: 4px;
       border-radius: 2px;
-    }
-
-    /* ===== Expanderande tjänster-kort ===== */
-    .service-hover-menu {
-      position: absolute;
-      top: 120%;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 20px;
-      opacity: 0;
-      pointer-events: none;
-      transition: all 0.5s ease;
-    }
-
-    nav ul li:hover .service-hover-menu {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .hover-card {
-      background: rgba(255,255,255,0.15);
-      width: 160px;
-      padding: 15px;
-      border-radius: 12px;
-      text-align: center;
-      color: #0a1a2f;
-      transform: translateY(-20px);
-      transition: all 0.4s ease;
-      cursor: pointer;
-    }
-
-    .hover-card:hover {
-      transform: translateY(-30px);
-      box-shadow: 0 8px 20px rgba(0,191,166,0.4);
-    }
-
-    .hover-card i {
-      font-size: 2rem;
-      margin-bottom: 10px;
-      color: #00bfa6;
-    }
-
-    .hover-card h4 {
-      margin: 0;
-      font-size: 1rem;
-    }
-
-    .hover-card p {
-      font-size: 0.7rem;
-      margin: 5px 0 0 0;
     }
 
     /* ===== Hero Section ===== */
@@ -162,7 +107,7 @@
     .services {
       padding: 80px 20px;
       text-align: center;
-      background: rgba(255,255,255,0.15); /* genomskinlig vit */
+      background: #ffffff; /* vit bakgrund */
       color: #0a1a2f;
     }
 
@@ -238,7 +183,7 @@
     /* ===== Footer Section ===== */
     footer {
       padding: 50px 20px;
-      background: rgba(255,255,255,0.15); /* semi-vit */
+      background: #ffffff; /* vit bakgrund */
       text-align: center;
       color: #0a1a2f;
     }
@@ -304,13 +249,6 @@
       .service-card {
         width: 90%;
       }
-
-      .service-hover-menu {
-        flex-direction: column;
-        top: 100%;
-        left: 0;
-        transform: none;
-      }
     }
 
     /* ===== Canvas bakgrund ===== */
@@ -333,26 +271,7 @@
     <div class="logo">SalesFlow</div>
     <nav>
       <ul>
-        <li>
-          <a href="#">Tjänster</a>
-          <div class="service-hover-menu">
-            <div class="hover-card">
-              <i class="fas fa-globe"></i>
-              <h4>Digital närvaro</h4>
-              <p>Uppdateringar på hemsidan och SEO.</p>
-            </div>
-            <div class="hover-card">
-              <i class="fas fa-share-alt"></i>
-              <h4>Sociala medier</h4>
-              <p>Planering och hantering av konton.</p>
-            </div>
-            <div class="hover-card">
-              <i class="fas fa-envelope-open-text"></i>
-              <h4>Kommunikation</h4>
-              <p>Mail, nyhetsbrev och support.</p>
-            </div>
-          </div>
-        </li>
+        <li><a href="#">Tjänster</a></li>
         <li><a href="#">Case</a></li>
         <li><a href="#">Om oss</a></li>
         <li><a href="#">Kontakt</a></li>
@@ -443,7 +362,6 @@
     function animate() {
       ctx.clearRect(0, 0, w, h);
 
-      // Linjer mellan partiklar
       for (let i = 0; i < numParticles; i++) {
         for (let j = i + 1; j < numParticles; j++) {
           const dx = particles[i].x - particles[j].x;
