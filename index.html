@@ -5,239 +5,113 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SmartFlow - AI Smart Solutions</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
-    /* Grundläggande */
-    body {
-        font-family: 'Inter', sans-serif;
-        margin: 0;
-        padding: 0;
-        background: #0a0a0a;
-        color: #f5f5f5;
-        scroll-behavior: smooth;
-    }
-    a { text-decoration: none; color: inherit; }
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0; padding: 0;
+    background: #0a0a0a;
+    color: #f5f5f5;
+}
 
-    /* Header */
-    header {
-        background: rgba(10,10,10,0.95);
-        color: white;
-        padding: 20px 50px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: sticky;
-        top: 0;
-        z-index: 100;
-    }
-    header h1 { margin: 0; font-weight: 700; letter-spacing: 1px; }
-    nav a { color: #f5f5f5; margin-left: 25px; font-weight: 600; transition: 0.3s; }
-    nav a:hover { color: gold; }
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 80px;
+    background: rgba(10,10,10,0.95);
+    z-index: 100;
+}
 
-    /* Hero */
-    .hero {
-        position: relative;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        overflow: hidden;
-        background: linear-gradient(135deg, #0a0a0a, #1a1a2e, #162447);
-    }
-    .hero::before {
-        content: "";
-        position: absolute;
-        top:0; left:0; right:0; bottom:0;
-        background: rgba(0,0,0,0.5);
-        z-index: 1;
-    }
-    .hero h2, .hero p, .hero .btn {
-        position: relative;
-        z-index: 2;
-    }
-    .hero h2 { font-size: 3rem; margin-bottom: 20px; }
-    .hero p { font-size: 1.3rem; margin-bottom: 40px; max-width: 700px; color: #f5f5f5; }
-    .btn {
-        background: gold;
-        color: #0a0a0a;
-        padding: 15px 30px;
-        border: none;
-        border-radius: 5px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: 0.3s;
-        box-shadow: 0 0 15px rgba(255,215,0,0.6);
-    }
-    .btn:hover {
-        background: #ffd700;
-        transform: scale(1.05);
-        box-shadow: 0 0 25px rgba(255,215,0,0.9);
-    }
+.logo {
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: 1px;
+}
+.logo .smart { color: gold; }
+.logo .flow { color: #111; }
 
-    /* Sektioner */
-    section { padding: 80px 50px; max-width: 1200px; margin: auto; }
-    h3 { text-align: center; margin-bottom: 50px; font-size: 2.5rem; color: #f5f5f5; }
+.menu-btn {
+    position: absolute;
+    right: 20px;
+    top: 25px;
+    width: 30px; height: 30px;
+    cursor: pointer;
+    display: flex; flex-direction: column; justify-content: space-between;
+}
+.menu-btn span {
+    display: block;
+    height: 4px;
+    background: #f5f5f5;
+    border-radius: 2px;
+}
 
-    /* Tjänster */
-    .services-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 30px;
-    }
-    .service-item {
-        background: rgba(255,255,255,0.05);
-        border-radius: 10px;
-        padding: 40px 20px;
-        text-align: center;
-        box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-        transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
-    }
-    .service-item:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 12px 30px rgba(255,215,0,0.5);
-        background: rgba(255,215,0,0.05);
-    }
-    .service-item i { font-size: 50px; color: gold; margin-bottom: 20px; }
+.menu-panel {
+    position: fixed;
+    top: 0; right: -250px;
+    width: 250px;
+    height: 100%;
+    background: rgba(0,0,0,0.95);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: right 0.3s ease;
+    z-index: 200;
+}
+.menu-panel.active { right: 0; }
+.menu-panel a {
+    color: #f5f5f5;
+    text-decoration: none;
+    font-size: 1.5rem;
+    margin: 20px 0;
+    transition: color 0.3s;
+}
+.menu-panel a:hover { color: gold; }
 
-    /* About */
-    .about p {
-        font-size: 1.2rem;
-        line-height: 1.8;
-        text-align: center;
-        max-width: 800px;
-        margin: auto;
-        color: #f5f5f5;
-    }
-
-    /* Testimonials */
-    .testimonials { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 30px; }
-    .testimonial {
-        background: rgba(255,255,255,0.05);
-        padding: 30px 20px;
-        border-radius: 10px;
-        text-align: center;
-        color: #f5f5f5;
-        box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-        transition: transform 0.3s;
-    }
-    .testimonial:hover { transform: translateY(-10px); }
-
-    /* Kontakt */
-    .contact form {
-        display: flex;
-        flex-direction: column;
-        max-width: 500px;
-        margin: 0 auto;
-    }
-    .contact input, .contact textarea {
-        padding: 15px;
-        margin-bottom: 20px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-        font-size: 16px;
-    }
-    .contact button.btn { width: 150px; margin: auto; }
-
-    /* Footer */
-    footer {
-        text-align: center;
-        padding: 30px 0;
-        background: #111;
-        color: #f5f5f5;
-    }
-
-    /* Scroll-animation */
-    .fadeInOnScroll { opacity: 0; transform: translateY(50px); transition: all 0.8s ease-out; }
-    .fadeInOnScroll.visible { opacity: 1; transform: translateY(0); }
-
-    @media(max-width:768px){
-        header{flex-direction:column} 
-        nav a{margin:10px 0} 
-        .hero h2{font-size:2rem} 
-        .hero p{font-size:1rem}
-    }
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 80px);
+    text-align: center;
+    background: linear-gradient(135deg, #0a0a0a, #1a1a2e, #162447);
+}
+.hero h2 { font-size: 3rem; margin-bottom: 20px; color: #f5f5f5; }
+.hero p { font-size: 1.3rem; max-width: 700px; color: #f5f5f5; }
 </style>
 </head>
 <body>
 
 <header>
-    <h1>SmartFlow</h1>
-    <nav>
-        <a href="#services">Tjänster</a>
-        <a href="#about">Om oss</a>
-        <a href="#testimonials">Kunder</a>
-        <a href="#contact">Kontakt</a>
-    </nav>
+    <div class="logo"><span class="smart">Smart</span><span class="flow">Flow</span></div>
+    <div class="menu-btn" id="menuBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
 </header>
+
+<div class="menu-panel" id="menuPanel">
+    <a href="services.html">Tjänster</a>
+    <a href="about.html">Om oss</a>
+    <a href="testimonials.html">Kunder</a>
+    <a href="contact.html">Kontakt</a>
+</div>
 
 <section class="hero">
     <h2>AI som förändrar din verksamhet</h2>
     <p>SmartFlow erbjuder smarta AI-lösningar som automatiserar, analyserar och maximerar din potential.</p>
-    <button class="btn">Boka Demo</button>
 </section>
-
-<section class="services" id="services">
-    <h3>Våra Tjänster</h3>
-    <div class="services-grid">
-        <div class="service-item fadeInOnScroll">
-            <i class="fas fa-robot"></i>
-            <h4>AI Automatisering</h4>
-            <p>Automatisera repetitiva processer och spara tid med våra skräddarsydda AI-lösningar.</p>
-        </div>
-        <div class="service-item fadeInOnScroll">
-            <i class="fas fa-chart-line"></i>
-            <h4>Dataanalys & Insight</h4>
-            <p>Få djupare insikter från dina data och fatta bättre beslut med AI-driven analys.</p>
-        </div>
-        <div class="service-item fadeInOnScroll">
-            <i class="fas fa-comments"></i>
-            <h4>Chatbots & Support AI</h4>
-            <p>Förbättra kundupplevelsen med smarta AI-drivna chattlösningar.</p>
-        </div>
-    </div>
-</section>
-
-<section class="about" id="about">
-    <h3>Om SmartFlow</h3>
-    <p>SmartFlow är ett AI-konsultbolag som hjälper företag att implementera smarta lösningar som sparar tid, ökar effektivitet och ger bättre resultat. Vi kombinerar teknik med strategi för att skapa verkligt värde.</p>
-</section>
-
-<section class="testimonials" id="testimonials">
-    <h3>Vad våra kunder säger</h3>
-    <div class="testimonials">
-        <div class="testimonial fadeInOnScroll">"SmartFlow gjorde vår process 10x snabbare!" – Anna, VD</div>
-        <div class="testimonial fadeInOnScroll">"Fantastisk AI-lösning och support!" – Erik, CTO</div>
-        <div class="testimonial fadeInOnScroll">"Vi sparade massor av tid och pengar." – Sofia, Projektledare</div>
-    </div>
-</section>
-
-<section class="contact" id="contact">
-    <h3>Kontakta Oss</h3>
-    <form>
-        <input type="text" placeholder="Ditt namn" required>
-        <input type="email" placeholder="Din email" required>
-        <textarea placeholder="Ditt meddelande" rows="5" required></textarea>
-        <button class="btn" type="submit">Skicka</button>
-    </form>
-</section>
-
-<footer>
-    <p>&copy; 2025 SmartFlow. Alla rättigheter förbehållna.</p>
-</footer>
 
 <script>
-    const faders = document.querySelectorAll('.fadeInOnScroll');
-    const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
-    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
-        entries.forEach(entry => {
-            if(!entry.isIntersecting) return;
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-        });
-    }, appearOptions);
-    faders.forEach(fader => { appearOnScroll.observe(fader); });
+const menuBtn = document.getElementById('menuBtn');
+const menuPanel = document.getElementById('menuPanel');
+
+menuBtn.addEventListener('click', () => {
+    menuPanel.classList.toggle('active');
+});
 </script>
 
 </body>
