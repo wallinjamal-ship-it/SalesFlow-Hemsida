@@ -5,210 +5,150 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Våra Tjänster - SalesFlow</title>
   <link rel="stylesheet" href="styles.css">
-  <script src="https://unpkg.com/scrollreveal"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color: #fff;
-      overflow-x: hidden;
-    }
-
-    header {
-      background: rgba(0,0,0,0.7);
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    nav ul {
-      display: flex;
-      list-style: none;
       margin: 0;
-      padding: 0;
-    }
-
-    nav ul li {
-      margin-left: 20px;
-    }
-
-    nav ul li a {
-      text-decoration: none;
-      color: white;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
-
-    nav ul li a:hover {
-      color: #00ffe7;
+      background: #f9f9f9;
     }
 
     /* Hero */
     .hero {
-      height: 60vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      flex-direction: column;
-      padding: 20px;
-    }
-
-    .hero h1 {
-      font-size: 3rem;
-      background: linear-gradient(90deg, #00ffe7, #0078ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: glow 2s infinite alternate;
-    }
-
-    @keyframes glow {
-      from { text-shadow: 0 0 10px #00ffe7; }
-      to { text-shadow: 0 0 25px #0078ff; }
-    }
-
-    /* Services Section */
-    .services {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      padding: 50px 10%;
-    }
-
-    .service-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.2);
-      padding: 30px;
-      border-radius: 15px;
-      text-align: center;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .service-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 0 20px rgba(0,255,231,0.6);
-    }
-
-    .service-icon {
-      font-size: 40px;
-      margin-bottom: 15px;
-      color: #00ffe7;
-      transition: color 0.3s, transform 0.3s;
-    }
-
-    .service-card:hover .service-icon {
-      color: #0078ff;
-      transform: scale(1.2);
-    }
-
-    .service-card h3 {
-      margin: 10px 0;
-      font-size: 1.4rem;
+      background: #111;
       color: #fff;
+      padding: 80px 20px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      opacity: 0.8;
     }
 
-    .service-card p {
-      font-size: 0.95rem;
-      color: #ccc;
+    /* Services */
+    .services-section {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 20px;
+      display: grid;
+      gap: 40px;
+    }
+    .service {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease-out;
+    }
+    .service.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .service h2 {
+      font-size: 1.8rem;
+      color: #000;
+      margin-bottom: 10px;
+    }
+    .service p {
+      font-size: 1rem;
+      color: #333;
+      line-height: 1.6;
     }
 
     /* CTA */
     .cta {
       text-align: center;
       padding: 60px 20px;
-      background: rgba(0,0,0,0.6);
+      background: #000;
+      color: #fff;
     }
-
     .cta h2 {
-      font-size: 2rem;
       margin-bottom: 20px;
     }
-
     .cta a {
       padding: 12px 30px;
-      background: linear-gradient(90deg, #00ffe7, #0078ff);
+      background: #ff6f61;
       color: #fff;
-      border-radius: 30px;
       text-decoration: none;
-      font-weight: bold;
-      transition: transform 0.3s;
+      border-radius: 6px;
+      transition: 0.3s;
     }
-
     .cta a:hover {
-      transform: scale(1.1);
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9rem;
-      background: #000;
+      background: #e85a4f;
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- Navbar (samma som index) -->
   <header>
-    <div class="logo">SalesFlow</div>
-    <nav>
-      <ul>
+    <nav class="navbar">
+      <a href="index.html" class="logo">SalesFlow</a>
+      <ul class="nav-links">
         <li><a href="index.html">Hem</a></li>
         <li><a href="services.html" class="active">Tjänster</a></li>
-        <li><a href="cases.html">Case</a></li>
         <li><a href="about.html">Om oss</a></li>
-        <li><a href="index.html#contact">Kontakt</a></li>
+        <li><a href="contact.html">Kontakt</a></li>
       </ul>
+      <div class="hamburger">☰</div>
     </nav>
   </header>
 
   <!-- Hero -->
   <section class="hero">
     <h1>Våra Tjänster</h1>
-    <p>Vi hjälper företag växa digitalt genom smarta lösningar.</p>
+    <p>Vi hjälper ditt företag att växa genom digital närvaro, sociala medier och tydlig kommunikation.</p>
   </section>
 
   <!-- Services -->
-  <section class="services">
-    <div class="service-card" data-sr="fade-left">
-      <div class="service-icon"><i data-lucide="mail"></i></div>
-      <h3>Mailhantering</h3>
-      <p>Effektivisera er kommunikation med professionell hantering av företagsmail och kundsupport.</p>
+  <section class="services-section">
+    <div class="service">
+      <h2>🌐 Digital närvaro</h2>
+      <p>
+        Att synas online är avgörande för alla företag idag. Vi hjälper dig att bygga en stark digital närvaro genom professionella hemsidor, sökmotoroptimering (SEO) och en tydlig strategi för att nå rätt målgrupp. 
+        Vår målsättning är att göra ditt varumärke mer synligt och ge dig en stabil grund i den digitala världen.
+      </p>
     </div>
-    <div class="service-card" data-sr="fade-up">
-      <div class="service-icon"><i data-lucide="share-2"></i></div>
-      <h3>Sociala Medier</h3>
-      <p>Vi tar hand om era sociala medier – från planering och design till publicering och engagemang.</p>
+
+    <div class="service">
+      <h2>📱 Sociala medier</h2>
+      <p>
+        Sociala medier är en av de viktigaste kanalerna för att nå nya kunder och skapa engagemang. Vi hjälper dig att planera, producera och publicera innehåll som stärker ditt varumärke och väcker intresse. 
+        Med rätt strategi kan sociala medier bli en stark motor för tillväxt och kundrelationer.
+      </p>
     </div>
-    <div class="service-card" data-sr="fade-right">
-      <div class="service-icon"><i data-lucide="monitor"></i></div>
-      <h3>Webb & Hemsidor</h3>
-      <p>Från uppdateringar till design – vi gör er hemsida modern, snabb och användarvänlig.</p>
+
+    <div class="service">
+      <h2>💬 Kommunikation</h2>
+      <p>
+        Effektiv kommunikation är nyckeln till att bygga starka relationer, både internt och externt. Vi hjälper dig att strukturera upp hur ditt företag hanterar kundkontakter, mejl och budskap, 
+        så att kommunikationen blir tydlig och professionell. Det skapar förtroende och sparar tid.
+      </p>
     </div>
   </section>
 
   <!-- CTA -->
   <section class="cta">
-    <h2>Redo att ta nästa steg?</h2>
-    <a href="index.html#contact">Kontakta oss idag</a>
+    <h2>Redo att ta ditt företag till nästa nivå?</h2>
+    <a href="contact.html">Kontakta oss</a>
   </section>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 SalesFlow. Alla rättigheter förbehållna.</p>
-  </footer>
-
   <script>
-    lucide.createIcons();
-    ScrollReveal().reveal('[data-sr="fade-left"]', { origin: 'left', distance: '50px', duration: 1000 });
-    ScrollReveal().reveal('[data-sr="fade-up"]', { origin: 'bottom', distance: '50px', duration: 1000 });
-    ScrollReveal().reveal('[data-sr="fade-right"]', { origin: 'right', distance: '50px', duration: 1000 });
+    // Scroll animation (fade-in uppåt)
+    const services = document.querySelectorAll('.service');
+    window.addEventListener('scroll', () => {
+      services.forEach(service => {
+        const rect = service.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          service.classList.add('visible');
+        }
+      });
+    });
   </script>
 </body>
 </html>
